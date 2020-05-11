@@ -1,8 +1,8 @@
 #!/bin/bash
 # This script helps change brew source
 
-sh_ver="0.1"
-github_addr="https://raw.githubusercontent.com/svonx/self/master/brew_source.sh"
+sh_ver="0.2"
+github_addr="https://raw.githubusercontent.com/svonx/self-public/master/brew_source.sh"
 green_font_prefix="\033[32m" && cyan_font_prefix="\033[36m" && red_font_prefix="\033[31m" && font_color_suffix="\033[0m" 
 ini_dir="$PWD"
 
@@ -14,6 +14,7 @@ start_menu(){
     echo -e "${green_font_prefix}2.${font_color_suffix} Tsinghua University mirror source"
     echo -e "${green_font_prefix}3.${font_color_suffix} default source"
     echo "or"
+    echo -e "${red_font_prefix}8.${font_color_suffix} update"
     echo -e "${red_font_prefix}9.${font_color_suffix} exit"
     echo ""
     read -p "Your choice: " usr_choice
@@ -33,6 +34,9 @@ start_menu(){
         change_to_default
         success_info 3
         cd ${ini_dir}
+        ;;
+        8)
+        update_shell
         ;;
         9)
         cd ${ini_dir}
@@ -82,6 +86,25 @@ success_info(){
     esac
     echo -e "${green_font_prefix} successfully${font_color_suffix}."
     echo ""
+}
+
+update_shell(){
+    echo -e "Current version is ${sh_ver}, checking in progress..."
+    new_sh_ver=$(curl -s ${github_addr} | grep "sh_ver=" | head -n 1 | awk -F "=" '{print $NF}' | sed 's/\"//g')
+    if [[ ${sh_ver} != ${new_sh_ver} ]]
+    then
+        read -p "A new version is found. Do you want to update? y/n: " yn
+        [[ -z ${yn} ]] && yn="y"
+        if [[ ${yn} = [yY] ]]
+        then
+            curl -o brew_source.sh ${github_addr}
+        else
+            echo "cancelled."
+        fi
+    else
+        echo "This is the latest one."
+    fi
+        
 }
 
 #
