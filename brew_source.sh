@@ -3,7 +3,7 @@
 
 sh_ver="0.2"
 github_addr="https://raw.githubusercontent.com/svonx/self-public/master/brew_source.sh"
-green_font_prefix="\033[32m" && cyan_font_prefix="\033[36m" && red_font_prefix="\033[31m" && font_color_suffix="\033[0m" 
+green_font_prefix="\033[32m" && cyan_font_prefix="\033[36m" && red_font_prefix="\033[31m" && font_color_suffix="\033[0m"
 ini_dir="$PWD"
 
 start_menu(){
@@ -68,7 +68,7 @@ change_to_default(){
     cd "$(brew --repo)"
     git remote set-url origin https://github.com/Homebrew/brew.git
     cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
-    git remote set-url origin https://github.com/Homebrew/homebrew-core
+    git remote set-url origin https://github.com/Homebrew/homebrew-core.git
 }
 
 success_info(){
@@ -104,7 +104,7 @@ update_shell(){
     else
         echo "This is the latest one."
     fi
-        
+
 }
 
 #
