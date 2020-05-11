@@ -1,5 +1,9 @@
 #!/bin/bash
-# This script helps change brew source
+:<<!
+This script helps change brew source
+Author: c
+Last update: 11/05/2020
+!
 
 sh_ver="0.2"
 github_addr="https://raw.githubusercontent.com/svonx/self-public/master/brew_source.sh"
