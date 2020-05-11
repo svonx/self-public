@@ -97,7 +97,7 @@ update_shell(){
         [[ -z ${yn} ]] && yn="y"
         if [[ ${yn} = [yY] ]]
         then
-            curl -o brew_source.sh ${github_addr}
+            curl -o brew_source.sh ${github_addr} && chmod 755 brew_source.sh
         else
             echo "cancelled."
         fi
